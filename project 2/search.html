@@ -1,0 +1,60 @@
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>검색 페이지</title>
+  </head>
+  <h1>검색 페이지</h1>
+  <h2>검색하세요.</h2>
+  <p></p>
+  <hr />
+  <form
+    method="POST"
+    action="http://cspro.sogang.ac.kr/~cse20181632/cgi-bin/DB_display.php"
+  >
+    <fieldset>
+      <legend>검색</legend>
+      전체 검색: <input type="radio" name="search" value="all" checked />
+      <br />
+      이름 검색: <input type="radio" name="search" value="name" />
+      <br />
+      이름 (영어): <input type="text" name="fullname" />
+      <br />
+      성별 검색: <input type="radio" name="search" value="gender" />
+      <br />
+      <ul>
+        성별: 남<input type="radio" name="Gender" value="male" />
+        여<input type="radio" name="Gender" value="female" />
+      </ul>
+      <br />
+      메일 검색: <input type="radio" name="search" value="mail" />
+      <br />
+      메일: <input type="text" name="e-mail" />
+      <br />
+      학번 검색: <input type="radio" name="search" value="ID" />
+      <br />
+      학번: <input type="number" name="stid" />
+      <br />
+      학년 검색: <input type="radio" name="search" value="grade" />
+      <br />
+      <ul>
+        <li>1학년 <input type="radio" name="Grad" value="1st" /></li>
+        <li>2학년 <input type="radio" name="Grad" value="2nd" /></li>
+        <li>3학년 <input type="radio" name="Grad" value="3rd" /></li>
+        <li>4학년 <input type="radio" name="Grad" value="4th" /></li>
+        <li>
+          대학원생
+          <input type="radio" name="Grad" value="over 4th" />
+        </li>
+      </ul>
+      <br />
+      특정 날짜 이후 생일 검색:
+      <input type="radio" name="search" value="date" />
+      <br />
+      날짜 (YYYY-MM-DD): <input type="date" name="searchDate" />
+      <br />
+      <input type="submit" value="검색" />
+    </fieldset>
+    <br />
+  </form>
+</html>
