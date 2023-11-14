@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>검색 페이지</title>
+    <script>
+      function handleinput(inputValue) {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+          if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            //console.log(xmlhttp.responseText);
+
+            var resultData = JSON.parse(xmlhttp.responseText);
+
+            hadleresult(resultData);
+          }
+        };
+
+        var searchType = document.querySelector(
+          'input[name="search"]:checked'
+        ).value;
+        var searchData = {};
+
+        switch (searchType) {
+          case "all":
+            searchData.type = "all";
+            searchData.value = inputValue;
+            break;
+          case "name":
+            searchData.type = "name";
+            searchData.value = inputValue;
+            break;
+          case "mail":
+            searchData.type = "mail";
+            searchData.value = inputValue;
+            break;
+          case "ID":
+            searchData.type = "ID";
+            searchData.value = inputValue;
+            break;
+          default:
+            break;
+        }
+
+        var jsonData = JSON.stringify(searchData);
+        //console.log(jsonData);
+        var url =
+          "http://cspro.sogang.ac.kr/~cse20181632/cgi-bin/DB_display_ajax.php?q=" +
+          encodeURIComponent(jsonData);
+        xmlhttp.open("GET", url, true);
+        xmlhttp.send();
+      }
+
+      function hadleresult(data) {
+        var resultTable = document.getElementById("resultTable");
+        var tableHTML =
+          "<table border='1'><tr><th>ID</th><th>Name</th><th>Gender</th><th>Email</th><th>BirthDay</th><th>StudentID</th><th>Grade</th></tr>";
+        if (data.length > 0) {
+          for (var i = 0; i < data.length; i++) {
+            tableHTML +=
+              "<tr><td>" +
+              data[i].id +
+              "</td><td>" +
+              data[i].FullName +
+              "</td><td>" +
+              data[i].Gender +
+              "</td><td>" +
+              data[i].email +
+              "</td><td>" +
+              data[i].BirthDay +
+              "</td><td>" +
+              data[i].StudentID +
+              "</td><td>" +
+              data[i].Grade +
+              "</td></tr>";
+          }
+        } else {
+          tableHTML += "<tr><td colspan='7'>No results found.</td></tr>";
+        }
+        tableHTML += "</table>";
+        resultTable.innerHTML = tableHTML;
+      }
+    </script>
+  </head>
+  <body>
+    <h1>검색 페이지</h1>
+    <h2>검색하세요.</h2>
+    <p></p>
+    <hr />
+    <form onsubmit="return false;">
+      <fieldset>
+        <legend>검색</legend>
+        전체 검색: <input type="radio" name="search" value="all" checked />
+        <button type="button" onclick="handleinput()">전체검색</button>
+        <br />
+        이름 검색: <input type="radio" name="search" value="name" />
+        <br />
+        이름 (영어):
+        <input
+          type="text"
+          id="fullname"
+          name="fullname"
+          onkeyup="handleinput(this.value)"
+        />
+        <br />
+        메일 검색: <input type="radio" name="search" value="mail" />
+        <br />
+        메일:
+        <input
+          type="text"
+          id="e-mail"
+          name="e-mail"
+          onkeyup="handleinput(this.value)"
+        />
+        <br />
+        학번 검색: <input type="radio" name="search" value="ID" />
+        <br />
+        학번:
+        <input
+          type="number"
+          id="stid"
+          name="stid"
+          onkeyup="handleinput(this.value)"
+        />
+      </fieldset>
+      <br />
+
+      <div id="resultTable"></div>
+    </form>
+  </body>
+</html>

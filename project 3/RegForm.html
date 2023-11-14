@@ -1,0 +1,81 @@
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>정보입력 페이지</title>
+  </head>
+  <h1>정보입력 페이지</h1>
+  <h2>아래 항목들을 채워주세요</h2>
+  <p></p>
+  <hr />
+  <form
+    method="POST"
+    action="http://cspro.sogang.ac.kr/~cse20181632/cgi-bin/db_insert.php"
+  >
+    <fieldset>
+      <legend>기본정보</legend>
+      <label for="기본정보">
+        <br />
+        이름을 입력하세요:
+        <input
+          type="text"
+          name="Name"
+          placeholder="영어로 작성하세요"
+          required />
+
+        <p>
+          성별: 남<input type="radio" name="Gender" value="male" /> 여<input
+            type="radio"
+            name="Gender"
+            value="female"
+          />
+        </p>
+
+        <p>생년월일: <input type="date" name="Birthday" required /></p>
+        <p>
+          E-mail:
+          <input
+            type="email"
+            name="E-mail"
+            placeholder="hello@example.com"
+            required
+          /></p
+      ></label>
+    </fieldset>
+    <br />
+
+    <fieldset>
+      <legend>부가정보</legend>
+      <label for="부가정보">
+        <strong><h3>부가 사항</h3></strong>
+
+        <p>
+          학번을 입력하세요: <input type="number" name="Student-ID" required />
+        </p>
+
+        <p>학년:</p>
+
+        <ul>
+          <li>
+            1학년 <input type="radio" name="Grade" value="1st" required />
+          </li>
+          <li>
+            2학년 <input type="radio" name="Grade" value="2nd" required />
+          </li>
+          <li>
+            3학년 <input type="radio" name="Grade" value="3rd" required />
+          </li>
+          <li>
+            4학년 <input type="radio" name="Grade" value="4th" required />
+          </li>
+          <li>
+            대학원생
+            <input type="radio" name="Grade" value="over 4th" required />
+          </li>
+        </ul>
+      </label>
+    </fieldset>
+    <h2>제출 <input type="submit" value="submit" /></h2>
+    <p></p>
+  </form>
+</html>
