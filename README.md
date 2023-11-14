@@ -23,3 +23,5 @@
 ➡️[Visit RegForm page](http://cspro.sogang.ac.kr/~cse20181632/RegForm.html)
 
 ➡️[Visit Search page](http://cspro.sogang.ac.kr/~cse20181632/search_ajax.html)
+
+- `ajax`를 사용한 비동기적 검색
